@@ -5,6 +5,11 @@ export default function Layout({children}) {
         <>
             <NavBar/>
             <div>{children}</div>
+            <style jsx global>{`
+                a{
+                    color: black;
+                }
+            `}</style>
         </>
     );
 }

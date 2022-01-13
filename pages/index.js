@@ -1,29 +1,28 @@
-
-import Head from "next/head";
 import Link from "next/link";
-import { makePublicRouterInstance, useRouter } from "next/router";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Seo from "../components/Seo";
 
-const API_KEY = "5729b9af3f709c29897893a275a5789a";
+
+
 
 export default function Home({results}) {
     const router = useRouter();
-    const onClick = (id, title) => {
-        router.push(`/movies/${title}/${id}`,
-
-        );
+    console.log(results," the results");
+    const onClick = (id, title, overview) => {
+        router.push(`/movies/${title}/${id}/${overview}`,);
     };
     return (
         <div  className="container">
             <Seo title="Home" />
             {results?.map((movie) => (
-                        <div onClick={() => onClick(movie.id, movie.original_title )} className="movie" key={movie.id}>
+                        <div onClick={() => onClick(movie.id, movie.original_title, movie.overview)} className="movie" key={movie.id}>
                             <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
                             <h4>
-                                <Link href={`/movies/${movie.original_title}/${movie.id}`}
-                                >
-                                    <a>{movie.original_title}</a>
+                                <Link href={`/movies/${movie.original_title}/${movie.id}`} >
+                                    <div>
+                                        <a>{movie.original_title}</a>
+                                    </div>
                                 </Link>
                             </h4>
                         </div>
